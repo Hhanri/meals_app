@@ -8,7 +8,7 @@ class CategoryModel {
   CategoryModel({required this.id, required this.title, required this.color});
 }
 
-final mockData = [
+final mockCategories = [
   CategoryModel(
     id: 'c1',
     title: 'Italian',

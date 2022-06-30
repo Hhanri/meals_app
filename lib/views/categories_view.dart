@@ -9,7 +9,7 @@ class CategoriesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: const EdgeInsets.all(25),
-      itemCount: mockData.length,
+      itemCount: mockCategories.length,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
         childAspectRatio: 3/2,
@@ -18,7 +18,7 @@ class CategoriesView extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
 
-        final currentCategory = mockData[index];
+        final currentCategory = mockCategories[index];
         return CategoryItemWidget(category: currentCategory,);
       }
     );
