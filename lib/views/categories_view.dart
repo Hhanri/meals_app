@@ -19,7 +19,7 @@ class CategoriesView extends StatelessWidget {
       itemBuilder: (context, index) {
 
         final currentCategory = mockData[index];
-        return CategoryItemWidget(title: currentCategory.title, color: currentCategory.color);
+        return CategoryItemWidget(category: currentCategory,);
       }
     );
   }
