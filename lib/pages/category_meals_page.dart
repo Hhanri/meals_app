@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/views/category_meals_view.dart';
 
 class CategoryMealsPage extends StatelessWidget {
   final String categoryId;
@@ -15,7 +16,7 @@ class CategoryMealsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(categoryTitle),
       ),
-      body: const Text('hhah'),
+      body: CategoryMealsView(categoryTitle: categoryTitle, categoryId: categoryId,),
     );
   }
 }

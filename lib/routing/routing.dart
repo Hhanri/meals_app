@@ -11,6 +11,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         categoryTitle: (settings.arguments as Map<String, String>)['title']!
       )
     );
+    case mealRoute: return _navigateRoute(
+      CategoryMealsPage(
+        categoryId: (settings.arguments as Map<String, String>)['categoryId']!,
+        categoryTitle: (settings.arguments as Map<String, String>)['title']!
+      )
+    );
     default: return _navigateRoute(const HomePage());
   }
 }
@@ -23,3 +29,4 @@ PageRoute _navigateRoute(Widget child) {
 
 const homeRoute = '/';
 const categoryMealsRoute = '/category-meals';
+const mealRoute = '/meal';

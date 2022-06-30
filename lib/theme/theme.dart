@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 final ThemeData theme = ThemeData(
+  primaryColor: Colors.pink,
   primarySwatch: Colors.pink,
   colorScheme: ColorScheme.fromSwatch().copyWith(
     secondary: Colors.amber
+  ),
+  appBarTheme:const AppBarTheme(
+    color: Colors.pink
   ),
   canvasColor: const Color.fromRGBO(255, 254, 229, 1),
   fontFamily: 'Raleway',
