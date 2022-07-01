@@ -15,11 +15,7 @@ class CategoryMealsView extends StatelessWidget {
       itemBuilder: (context, index) {
         final MealModel currentMeal = meals[index];
         return MealItemWidget(
-          title: currentMeal.title,
-          imageUrl: currentMeal.imageUrl,
-          duration: currentMeal.duration,
-          complexity: currentMeal.complexity,
-          affordability: currentMeal.affordability
+          meal: currentMeal,
         );
       }
     );

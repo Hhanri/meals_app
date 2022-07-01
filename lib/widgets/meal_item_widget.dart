@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal_model.dart';
+import 'package:meals_app/routing/routing.dart';
 import 'package:meals_app/utils.dart';
 
 class MealItemWidget extends StatelessWidget {
-  final String title;
-  final String imageUrl;
-  final int duration;
-  final Complexity complexity;
-  final Affordability affordability;
+  final MealModel meal;
 
   const MealItemWidget({
     Key? key,
-    required this.title,
-    required this.imageUrl,
-    required this.duration,
-    required this.complexity,
-    required this.affordability
+    required this.meal,
   }) : super(key: key);
+
+  void _selectMeal(BuildContext context) {
+    Navigator.of(context).pushNamed(mealRoute, arguments: meal);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,9 @@ class MealItemWidget extends StatelessWidget {
     const  BorderRadius imageRadius = BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15));
     return InkWell(
       borderRadius: borderRadius,
-      onTap: () {},
+      onTap: () {
+        _selectMeal(context);
+      },
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: borderRadius
@@ -38,7 +37,7 @@ class MealItemWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: imageRadius,
                   child: Image.network(
-                    imageUrl,
+                    meal.imageUrl,
                     height: 250,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -52,7 +51,7 @@ class MealItemWidget extends StatelessWidget {
                     color: Colors.black54,
                     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                     child: Text(
-                      title,
+                      meal.title,
                       style: const TextStyle(
                         fontSize: 26,
                         color: Colors.white,
@@ -69,9 +68,9 @@ class MealItemWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconTextWidget(icon: Icons.schedule, text: '$duration min'),
-                  IconTextWidget(icon: Icons.work, text: MealsUtils.complexityText(complexity)),
-                  IconTextWidget(icon: Icons.money, text: MealsUtils.affordabilityText(affordability)),
+                  IconTextWidget(icon: Icons.schedule, text: '${meal.duration} min'),
+                  IconTextWidget(icon: Icons.work, text: MealsUtils.complexityText(meal.complexity)),
+                  IconTextWidget(icon: Icons.money, text: MealsUtils.affordabilityText(meal.affordability)),
                 ],
               ),
             )

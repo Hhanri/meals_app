@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/models/meal_model.dart';
 import 'package:meals_app/pages/category_meals_page.dart';
 import 'package:meals_app/pages/home_page.dart';
+import 'package:meals_app/pages/meal_detail_page.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch(settings.name) {
@@ -12,10 +14,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       )
     );
     case mealRoute: return _navigateRoute(
-      CategoryMealsPage(
-        categoryId: (settings.arguments as Map<String, String>)['categoryId']!,
-        categoryTitle: (settings.arguments as Map<String, String>)['title']!
-      )
+      MealDetailPage(meal: settings.arguments as MealModel)
     );
     default: return _navigateRoute(const HomePage());
   }
