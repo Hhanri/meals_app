@@ -3,18 +3,23 @@ import 'package:meals_app/models/meal_model.dart';
 import 'package:meals_app/views/meal_detail_view.dart';
 
 class MealDetailPage extends StatelessWidget {
-  final MealModel meal;
-  const MealDetailPage({Key? key, required this.meal}) : super(key: key);
+  final Function(String) toggleFavorite;
+  final Function(String) isFavorite;
+  const MealDetailPage({Key? key, required this.toggleFavorite, required this.isFavorite}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    final MealModel meal = ModalRoute.of(context)!.settings.arguments as MealModel;
     return Scaffold(
       appBar: AppBar(title: Text(meal.title),),
-      body: MealDetailView(meal: meal,),
+      body: MealDetailView(meal: meal),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.delete),
+        child: Icon(
+          isFavorite(meal.id) ? Icons.star : Icons.star_border
+        ),
         onPressed: () {
-          Navigator.of(context).pop(meal);
+          toggleFavorite(meal.id);
         },
       ),
     );

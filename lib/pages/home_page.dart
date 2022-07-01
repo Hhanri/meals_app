@@ -6,7 +6,8 @@ import 'package:meals_app/widgets/drawer_widget.dart';
 
 class HomePage extends StatefulWidget {
   final List<MealModel> availableMeals;
-  const HomePage({Key? key, required this.availableMeals}) : super(key: key);
+  final List<MealModel> favoriteMeals;
+  const HomePage({Key? key, required this.availableMeals, required this.favoriteMeals}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     pages = [
       {'page': CategoriesView(availableMeals: widget.availableMeals,), 'title': "Categories"},
-      {'page': const FavoritesView(), 'title': "Favorite"},
+      {'page': FavoritesView(favorites: widget.favoriteMeals,), 'title': "Favorite"},
     ];
     super.initState();
   }
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       pages = [
         {'page': CategoriesView(availableMeals: widget.availableMeals,), 'title': "Categories"},
-        {'page': const FavoritesView(), 'title': "Favorite"},
+        {'page': FavoritesView(favorites: widget.favoriteMeals), 'title': "Favorite"},
       ];
     });
     print("update widget");

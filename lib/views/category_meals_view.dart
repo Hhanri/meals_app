@@ -21,11 +21,6 @@ class _CategoryMealsViewState extends State<CategoryMealsView> {
     super.initState();
   }
 
-  void removeMeal(MealModel meal) {
-    setState(() {
-      meals.removeWhere((element) => element.id == meal.id);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +30,6 @@ class _CategoryMealsViewState extends State<CategoryMealsView> {
         final MealModel currentMeal = meals[index];
         return MealItemWidget(
           meal: currentMeal,
-          removeMeal: removeMeal,
         );
       }
     );
