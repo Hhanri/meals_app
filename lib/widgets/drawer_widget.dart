@@ -28,7 +28,7 @@ class DrawerWidget extends StatelessWidget {
           drawerButton(
             icon: Icons.restaurant,
             text: "Meals", onTap: () {
-              Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (route) => false);
+              Navigator.of(context).pushReplacementNamed(homeRoute);
           }),
           drawerButton(
             icon: Icons.settings,

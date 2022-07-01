@@ -5,20 +5,26 @@ import 'package:meals_app/utils.dart';
 
 class MealItemWidget extends StatelessWidget {
   final MealModel meal;
-
+  final Function(MealModel) removeMeal;
   const MealItemWidget({
     Key? key,
-    required this.meal,
+    required this.meal, required this.removeMeal,
   }) : super(key: key);
 
   void _selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(mealRoute, arguments: meal);
+    Navigator.of(context).pushNamed(mealRoute, arguments: meal).then(
+      (value) {
+        if (value != null) {
+          removeMeal(value as MealModel);
+        }
+      }
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final BorderRadius borderRadius = BorderRadius.circular(15);
-    const  BorderRadius imageRadius = BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15));
+    const BorderRadius imageRadius = BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15));
     return InkWell(
       borderRadius: borderRadius,
       onTap: () {
