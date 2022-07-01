@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/views/categories_view.dart';
 import 'package:meals_app/views/favorites_view.dart';
+import 'package:meals_app/widgets/drawer_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(pages[currentPage]['title'] as String),
       ),
+      drawer: const DrawerWidget(),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white,
         //backgroundColor: Theme.of(context).primaryColor,

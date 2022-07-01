@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal_model.dart';
 import 'package:meals_app/pages/category_meals_page.dart';
+import 'package:meals_app/pages/filter_page.dart';
 import 'package:meals_app/pages/home_page.dart';
 import 'package:meals_app/pages/meal_detail_page.dart';
 
@@ -16,6 +17,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case mealRoute: return _navigateRoute(
       MealDetailPage(meal: settings.arguments as MealModel)
     );
+    case filtersRoute: return _navigateRoute(
+      const FiltersPage()
+    );
     default: return _navigateRoute(const HomePage());
   }
 }
@@ -29,3 +33,4 @@ PageRoute _navigateRoute(Widget child) {
 const homeRoute = '/';
 const categoryMealsRoute = '/category-meals';
 const mealRoute = '/meal';
+const filtersRoute = '/filters';
