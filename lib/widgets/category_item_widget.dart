@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/category_model.dart';
+import 'package:meals_app/models/meal_model.dart';
 import 'package:meals_app/routing/routing.dart';
 
 class CategoryItemWidget extends StatelessWidget {
   final CategoryModel category;
-  const CategoryItemWidget({Key? key, required this.category}) : super(key: key);
+  final List<MealModel> availableMeals;
+  const CategoryItemWidget({Key? key, required this.category, required this.availableMeals}) : super(key: key);
 
   void _selectCategory(BuildContext context) {
     Navigator.of(context).pushNamed(
       categoryMealsRoute,
       arguments: {
         'id': category.id,
-        'title': category.title
+        'title': category.title,
+        'availableMeals': availableMeals
       }
     );
   }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/category_model.dart';
+import 'package:meals_app/models/meal_model.dart';
 import 'package:meals_app/widgets/category_item_widget.dart';
 
 class CategoriesView extends StatelessWidget {
-  const CategoriesView({Key? key}) : super(key: key);
+  final List<MealModel> availableMeals;
+  const CategoriesView({Key? key, required this.availableMeals}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class CategoriesView extends StatelessWidget {
       itemBuilder: (context, index) {
 
         final currentCategory = mockCategories[index];
-        return CategoryItemWidget(category: currentCategory,);
+        return CategoryItemWidget(category: currentCategory, availableMeals: availableMeals,);
       }
     );
   }

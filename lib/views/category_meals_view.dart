@@ -5,7 +5,8 @@ import 'package:meals_app/widgets/meal_item_widget.dart';
 class CategoryMealsView extends StatefulWidget {
   final String categoryTitle;
   final String categoryId;
-  const CategoryMealsView({Key? key, required this.categoryTitle, required this.categoryId}) : super(key: key);
+  final List<MealModel> availableMeals;
+  const CategoryMealsView({Key? key, required this.categoryTitle, required this.categoryId, required this.availableMeals}) : super(key: key);
 
   @override
   State<CategoryMealsView> createState() => _CategoryMealsViewState();
@@ -16,7 +17,7 @@ class _CategoryMealsViewState extends State<CategoryMealsView> {
 
   @override
   void initState() {
-    meals = mockMeals.where((element) => element.categories.contains(widget.categoryId)).toList();
+    meals = widget.availableMeals.where((element) => element.categories.contains(widget.categoryId)).toList();
     super.initState();
   }
 

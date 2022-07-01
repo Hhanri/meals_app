@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/models/meal_model.dart';
 import 'package:meals_app/views/categories_view.dart';
 import 'package:meals_app/views/favorites_view.dart';
 import 'package:meals_app/widgets/drawer_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final List<MealModel> availableMeals;
+  const HomePage({Key? key, required this.availableMeals}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -13,11 +15,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   int currentPage = 0;
+  late List<Map<String, Object>> pages;
+  @override
+  void initState() {
+    pages = [
+      {'page': CategoriesView(availableMeals: widget.availableMeals,), 'title': "Categories"},
+      {'page': const FavoritesView(), 'title': "Favorite"},
+    ];
+    super.initState();
+  }
 
-  final List<Map<String, Object>> pages = const [
-    {'page': CategoriesView(), 'title': "Categories"},
-    {'page': FavoritesView(), 'title': "Favorite"},
-  ];
+  @override
+  void didUpdateWidget(covariant HomePage oldWidget) {
+    setState(() {
+      pages = [
+        {'page': CategoriesView(availableMeals: widget.availableMeals,), 'title': "Categories"},
+        {'page': const FavoritesView(), 'title': "Favorite"},
+      ];
+    });
+    print("update widget");
+    super.didUpdateWidget(oldWidget);
+  }
 
   void selectPage(int index) {
     setState(() {
